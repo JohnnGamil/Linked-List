@@ -119,6 +119,24 @@ void deleteAtEnd(Node* &head) {
 }
 
 
+void deleteAtMiddle(Node *&head, int k){
+    if(k==1){
+        deleteAtStart(head);
+        return;
+    }
+    Node* temp = head;
+    for(int i=1;i<k-1l;i++){
+        temp = temp->next;
+    }
+    Node* delNode = temp->next;
+    temp->next = delNode->next;
+    if (delNode->next){
+        delNode->next->prev = temp;
+    }
+    free(delNode);
+}
+
+
 int main(){
     Node* n1 = new Node(1);    
     Node* n2 = new Node(2);
@@ -135,5 +153,8 @@ int main(){
     forwardTravesal(head);
     deleteAtEnd(head);
     forwardTravesal(head);
-
-}
+    insertAtStart(head,9);
+    forwardTravesal(head);
+    deleteAtMiddle(head,2);
+    forwardTravesal(head);
+} 
